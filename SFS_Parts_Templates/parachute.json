@@ -1,5 +1,5 @@
 {
-    "n": "Solar Array 2",
+    "n": "Parachute",
     "p": {
         "x": 0,
         "y": 0
@@ -9,4 +9,8 @@
         "y": 1,
         "z": 0
     },
+    "N": {
+        "deploy_state": 0.0,
+        "animation_state": 0.0
+    }
 }
