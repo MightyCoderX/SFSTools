@@ -1,4 +1,4 @@
 const parts = {
-    engine: ["Hawk", "Valiant", "Kolibri", "Titan", "Frontier"],
+    engine: ["Hawk", "Valiant", "Kolibri", "Titan", "Frontier", "Ion"],
     
 }
