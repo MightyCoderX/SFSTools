@@ -1,0 +1,53 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    width: 100vw;
+    height: 100vh;
+    background: #1a1a1a;
+    color: white;
+    font-family: monospace;
+}
+
+header
+{
+    width: 100vw;
+    height: 60px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px 0 50px;
+    position: absolute;
+}
+
+header nav
+{
+}
+
+header nav ul
+{
+    list-style: none;
+    display: flex;
+}
+
+header nav li a
+{
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px 15px;
+    background: #333;
+}
+
+.main
+{
+    height: 100vh;
+    width: 100vw;
+    padding-top: 15vh;
+}

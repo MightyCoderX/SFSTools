@@ -1,0 +1,37 @@
+.main
+{
+    text-align: center;
+}
+
+.main .description
+{
+    position: relative;
+    color: white;
+    font-size: 20px;
+    width: 50%;
+    max-width: 60ch;
+    transform: translateX(-50%);
+    left: 50%;
+    margin-bottom: 30px;
+}
+
+.main ul
+{
+    width: max-content;
+}
+
+.main .tools-list-box
+{
+    position: relative;
+    width: max-content;
+    transform: translateX(-50%);
+    left: 50%;
+    padding: 1rem 4rem;
+    background: #222;
+}
+
+.main ul li a
+{
+    color: green;
+    font-size: 20px;
+}
