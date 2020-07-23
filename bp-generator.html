@@ -6,7 +6,8 @@
         <title>SFS Tools</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/bp-generator.css">
-        <script src="js/BPGenerator.js"></script>
+        <script src="js/BPGenerator.js" defer></script>
+        <script src="js/GenHtmlFromJson.js" defer></script>
     </head>
     <body>
         <header>
@@ -18,26 +19,33 @@
             </nav>
         </header>
         <section class="main">
-            <select id="selType">
-                <option value="engine">Engine</option>
-                <option value="rcs">RCS</option>
-                <option value="fuel_tank">Fuel Tank</option>
-                <option value="solar_array">Solar Array</option>
-                <option value="landing_leg">Landing Leg</option>
-                <option value="probe">Probe</option>
-                <option value="capsule">Capsule</option>
-                <option value="parachute">Parachute</option>
-                <option value="separator">Separator</option>
-                <option value="side_separator">Side Separator</option>
-                <option value="aerodynamics">Aerodynamics</option>
-                <option value="wheel">Wheel</option>
-                <option value="fairing">Fairing</option>
-                <option value="docking_port">Docking Port</option>
-            </select>
-            <button id="addPart">Add Part</button>
-    
-            <div id="parts">
-    
+            <div class="fields-box">
+                <div class="addPart">
+                    <label for="partType">Select a part: </label>
+                    <input type="text" id="partType" list="typeList">
+                    <datalist id="typeList">
+                        <option data-value="engine"         value="Engine">
+                        <option data-value="rcs"            value="RCS">
+                        <option data-value="fuel_tank"      value="Fuel Tank">
+                        <option data-value="solar_array"    value="Solar Array">
+                        <option data-value="landing_leg"    value="Landing Leg">
+                        <option data-value="probe"          value="Probe">
+                        <option data-value="capsule"        value="Capsule">
+                        <option data-value="parachute"      value="Parachute">
+                        <option data-value="separator"      value="Separator">
+                        <option data-value="side_separator" value="Side Separator">
+                        <option data-value="aerodynamics"   value="Aerodynamics">
+                        <option data-value="wheel"          value="Wheel">
+                        <option data-value="fairing"        value="Fairing">
+                        <option data-value="docking_port"   value="Docking Port">
+                    </datalist>
+                    <button id="btnAddPart">Add Part</button>
+                </div>
+
+                <div id="parts"></div>
+            </div>
+            <div class="output-box">
+                <textarea id="output" readonly></textarea>
             </div>
         </section>
     </body>

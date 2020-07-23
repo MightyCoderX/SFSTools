@@ -1,0 +1,70 @@
+.main
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 16px;
+}
+
+textarea
+{
+    max-width: 40vw;
+    max-height: 80vh;
+    width: 40vw;
+    height: 40vh;
+}
+
+.addPart
+{
+    margin-bottom: 1rem;
+}
+
+#addPart label
+{
+    display: block;
+}
+
+input#partType
+{
+    font-size: 16px;
+    padding: 0.8rem;
+}
+
+button#btnAddPart
+{
+    padding: 1rem 2rem;
+    background: blue;
+    border: 1px solid blue;
+    color: white;
+    outline: none;
+    transition: 0.2s;
+}
+
+button#btnAddPart:hover,
+button#btnAddPart:focus
+{
+    background: rgb(0, 81, 255);
+}
+
+.output-box
+{
+    width: 40vw;
+}
+
+#parts
+{
+    overflow-y: scroll;
+    height: 60vh;
+    background: #222;
+    padding: 1rem;
+}
+
+#parts fieldset
+{
+    padding: 0.8rem 1rem 1rem 1rem;
+}
+
+#parts input
+{
+    display: block;
+}

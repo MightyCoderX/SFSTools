@@ -5,10 +5,14 @@
     box-sizing: border-box;
 }
 
-body
+html, body
 {
     width: 100vw;
     height: 100vh;
+}
+
+body
+{
     background: #1a1a1a;
     color: white;
     font-family: monospace;
@@ -47,7 +51,9 @@ header nav li a
 
 .main
 {
-    height: 100vh;
+    position: relative;
+    top: 60px;
+    height: calc(100vh - 60px);
     width: 100vw;
-    padding-top: 15vh;
+    padding-top: 2rem;
 }
