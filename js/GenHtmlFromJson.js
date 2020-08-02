@@ -13,7 +13,7 @@ for(let file of files)
     {
         let name = (file[0].toUpperCase() + file.substring(1)).split("_").join(" ");
         let html = `<fieldset class="part">\t<legend>${name}</legend>\n${genHtmlFieldsFromObject(data)}\n</fieldset>`;
-        document.getElementById("parts").innerHTML += html;
+        //document.getElementById("parts").innerHTML += html;
         let download = document.createElement('a');
         download.classList.add("download_html");
         download.download = file+".html";
