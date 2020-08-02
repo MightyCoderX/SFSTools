@@ -68,3 +68,18 @@ button#btnAddPart:focus
 {
     display: block;
 }
+
+#parts input[type="checkbox"]
+{
+    display: inline-block;
+    margin-right: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+#parts input[type="checkbox"] + span
+{
+    color: red;
+    height: 1rem;
+    text-align: center;
+}

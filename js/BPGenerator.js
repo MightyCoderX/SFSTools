@@ -1,5 +1,4 @@
 const parts = {
-    engine: ["Hawk", "Valiant", "Kolibri", "Titan", "Frontier", "Ion"],
-    solar_array: [2, 3],
-    landing_leg: 
+    engine: ["Engine Hawk", "Engine Valiant", "Engine Kolibri", "Engine Titan", "Engine Frontier", "Ion Engine"],
+    solar_array: [2, 3]
 }
