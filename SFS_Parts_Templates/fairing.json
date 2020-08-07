@@ -1,18 +1,22 @@
 {
-    "n": "",
+    "n": "Fairing",
     "p": {
       "x": 0,
       "y": 0
     },
     "o": {
-      "x": -1,
+      "x": 1,
       "y": 1,
       "z": 0
     },
     "N": {
-      "size": 2.2
+      "width_original": 2.0,
+      "width_a": 2.0,
+      "width_b": 2.0,
+      "height": 1.0
     },
     "T": {
+      "fragment": null,
       "color_tex": "_",
       "shape_tex": "_"
     }
