@@ -23,7 +23,9 @@ btnAddPart.addEventListener('click', () =>
     .then(res  => res.text())
     .then(data =>
     {
-        data = data.replace('');
+       
+
+
         partsElem.insertAdjacentHTML('beforeend', data);
         console.log(data);
     });
