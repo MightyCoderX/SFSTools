@@ -9,7 +9,7 @@
 # Features
 
 ## Current
-- [x] Adding parts via the form
+- [ ] Adding parts via the form
 - [x] Edit part values via forms  
 - [x] All parts? I think (Add an issue if not)
 
