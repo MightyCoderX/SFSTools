@@ -40,8 +40,12 @@ button#btnAddPart
     transition: 0.2s;
 }
 
-button#btnAddPart:hover,
 button#btnAddPart:focus
+{
+    border: 1px solid aqua;
+}
+
+button#btnAddPart:hover
 {
     background: rgb(0, 81, 255);
 }
