@@ -13,5 +13,5 @@
 - [x] Edit part values via forms  
 - [x] All parts? I think (Add an issue if not)
 
-## Coming (Maybe if I can XD)
+## Coming (Maybe if I can)
 - [ ] Visual editor
