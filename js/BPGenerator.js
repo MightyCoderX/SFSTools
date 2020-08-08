@@ -1,5 +1,6 @@
 const partType = document.getElementById('partType');
 const btnAddPart = document.getElementById('btnAddPart');
+const partsElem = document.getElementById('parts');
 
 const parts = {
     engine: ["Engine Hawk", "Engine Valiant", "Engine Kolibri", "Engine Titan", "Engine Frontier", "Ion Engine"],
@@ -9,8 +10,21 @@ const parts = {
     parachute: ["Parachute", "Parachute Side"]
 }
 
-btnAddPart.addEventListener('click', async () =>
+btnAddPart.addEventListener('click', () =>
 {
-    const file = partType;
+    if(!partType.value.trim()) return;
+    
+    const value = document.querySelector(`.addPart #typeList option[value="${partType.value}"]`).dataset.value;
+    const file = `${value}.html`;
+
     console.log(file);
+
+    fetch(`SFS_HTML_Components/${file}`)
+    .then(res  => res.text())
+    .then(data =>
+    {
+        data = data.replace('');
+        partsElem.insertAdjacentHTML('beforeend', data);
+        console.log(data);
+    });
 });
