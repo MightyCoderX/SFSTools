@@ -2,7 +2,7 @@ const partType = document.getElementById('partType');
 const btnAddPart = document.getElementById('btnAddPart');
 const partsElem = document.getElementById('parts');
 
-const parts = {
+const partTypes = {
     engine: ["Engine Hawk", "Engine Valiant", "Engine Kolibri", "Engine Titan", "Engine Frontier", "Ion Engine"],
     solar_array: [2, 3],
     aerodynamics: ["Side Fuselage", "Cone", "Cone Side"],
@@ -23,9 +23,22 @@ btnAddPart.addEventListener('click', () =>
     .then(res  => res.text())
     .then(data =>
     {
-        if(parts[value])
+        if(partTypes[value])
         {
-            console.log(insertAtIndex(data, data.indexOf("\n"), "Hello"));
+            data = insertAtIndex(data, getPosition(data, "\n", 2)-1, ' list="variants"');
+            data = insertAtIndex(data, getPosition(data, "\n", 2)+1, '\t<datalist id="variants">\n');
+            data = insertAtIndex(data, getPosition(data, "\n", 3)+1, '\t</datalist>\n');
+
+            let options = "";
+
+            for(const type of partTypes[value])
+            {
+                options += '\t\t<option value="' + type + '">\n';
+            }
+
+            console.log(options);
+
+            data = insertAtIndex(data, getPosition(data, "\n", 3)+1, options);
         }
 
         partsElem.insertAdjacentHTML('beforeend', data);
@@ -33,7 +46,15 @@ btnAddPart.addEventListener('click', () =>
     });
 });
 
-function insertAtIndex(str, index, text)
+function insertAtIndex(str, index, sub)
 {
-    return str.substring(0, index) + text + str.substring(index+text.length-1);
+    const fullLength = (str+sub).length;
+    const start = str.substring(0, index);
+    const end = str.substring(index);
+    return start + sub + end;
+}
+
+function getPosition(string, subString, index)
+{
+    return string.split(subString, index).join(subString).length;
 }
