@@ -1,6 +1,7 @@
 const partType = document.getElementById('partType');
 const btnAddPart = document.getElementById('btnAddPart');
 const partsElem = document.getElementById('parts');
+const output = document.getElementById('output');
 
 const partTypes = {
     engine: ["Engine Hawk", "Engine Valiant", "Engine Kolibri", "Engine Titan", "Engine Frontier", "Ion Engine"],
@@ -10,9 +11,33 @@ const partTypes = {
     parachute: ["Parachute", "Parachute Side"]
 }
 
-function genBluePrint()
+function genObjectFromHtml(parent)
 {
-    
+    let objects = [];
+
+    let obj = {};
+
+    for(const child of parent.children)
+    {
+        console.log(child.tagName);
+        if(child.tagName.toLowerCase() == "fieldset")
+        {
+            objects = [...genObjectFromHtml(child)];
+            console.log(child);
+        }
+        
+        if(child.tagName.toLowerCase() == "input")
+        {
+            obj[child.id] = child.value;
+            console.log(child.id, child.value);
+        }
+    }
+
+    objects.push(obj);
+
+    console.log(objects, obj);
+
+    return objects;
 }
 
 btnAddPart.addEventListener('click', () =>
@@ -30,7 +55,7 @@ btnAddPart.addEventListener('click', () =>
     {
         if(partTypes[value])
         {
-            data = insertAtIndex(data, getPosition(data, "\n", 3)-1, ' list="variants"');
+            data = insertAtIndex(data, getPosition(data, "\n", 3)-1, ' list="variants" autocomplete="off"');
             data = insertAtIndex(data, getPosition(data, "\n", 3)+1, '\t<datalist id="variants">\n');
             data = insertAtIndex(data, getPosition(data, "\n", 4)+1, '\t</datalist>\n');
 
@@ -52,7 +77,10 @@ btnAddPart.addEventListener('click', () =>
 
         partsElem.insertAdjacentHTML('beforeend', data);
         partType.value = "";
-        console.log(data);
+
+        const obj = genObjectFromHtml(partsElem);
+        console.log(obj);
+        output.textContent = JSON.stringify(obj);
     });
 });
 
