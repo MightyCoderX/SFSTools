@@ -71,7 +71,7 @@ function genHtmlFieldsFromObject(object)
             case "object":
                 outputHtml += "\t<fieldset>\n";
                 outputHtml += `\t\t<legend>${key}</legend>\n`;
-                outputHtml += "\t" + genHtmlFieldsFromObject(object[key]);
+                outputHtml += genHtmlFieldsFromObject(object[key]).replace(/\t/g, "\t\t");
                 outputHtml += "\t</fieldset>\n";
                 break;
             case "number":
