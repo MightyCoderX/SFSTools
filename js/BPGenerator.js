@@ -10,6 +10,11 @@ const partTypes = {
     parachute: ["Parachute", "Parachute Side"]
 }
 
+function genBluePrint()
+{
+    
+}
+
 btnAddPart.addEventListener('click', () =>
 {
     if(!partType.value.trim()) return;
@@ -25,9 +30,9 @@ btnAddPart.addEventListener('click', () =>
     {
         if(partTypes[value])
         {
-            data = insertAtIndex(data, getPosition(data, "\n", 2)-1, ' list="variants"');
-            data = insertAtIndex(data, getPosition(data, "\n", 2)+1, '\t<datalist id="variants">\n');
-            data = insertAtIndex(data, getPosition(data, "\n", 3)+1, '\t</datalist>\n');
+            data = insertAtIndex(data, getPosition(data, "\n", 3)-1, ' list="variants"');
+            data = insertAtIndex(data, getPosition(data, "\n", 3)+1, '\t<datalist id="variants">\n');
+            data = insertAtIndex(data, getPosition(data, "\n", 4)+1, '\t</datalist>\n');
 
             let options = "";
 
@@ -38,10 +43,15 @@ btnAddPart.addEventListener('click', () =>
 
             console.log(options);
 
-            data = insertAtIndex(data, getPosition(data, "\n", 3)+1, options);
+            data = insertAtIndex(data, getPosition(data, "\n", 4)+1, options);
+        }
+        else
+        {
+            data = insertAtIndex(data, getPosition(data, "\n", 3)-1, ' readonly');
         }
 
         partsElem.insertAdjacentHTML('beforeend', data);
+        partType.value = "";
         console.log(data);
     });
 });

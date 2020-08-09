@@ -1,4 +1,7 @@
 const dir = `../SFS_Parts_Templates/`;
+
+var htmlComponents = new JSZip();
+
 const files = [
     "aerodynamics",
     "capsule",
@@ -20,33 +23,34 @@ const files = [
 
 for(let file of files)
 {
-    const path = dir+file+".json";
- 
-    console.log(file);
-    fetch(path)
+    fetch(dir+file+".json")
     .then(res => res.json())
     .then(data =>
     {
         let name = (file[0].toUpperCase() + file.substring(1)).split("_").join(" ");
-        let html = `<fieldset class="part">\t<legend>${name}</legend>\n${genHtmlFieldsFromObject(data)}\n</fieldset>`;
+        let html = `<fieldset class="${file}">\n\t<legend>${name}</legend>\n${genHtmlFieldsFromObject(data)}\n</fieldset>`;
         //document.getElementById("parts").innerHTML += html;
-        let download = document.createElement('a');
-        download.classList.add("download_html");
-        download.download = file+".html";
-        download.innerText = "Download " + file;
-        download.hidden = true;
 
-        document.body.appendChild(download);
-
-        let blob = new Blob([html], {type: "text/plain;charset=utf-8"});
-        download.href = URL.createObjectURL(blob);
+        htmlComponents.file(`${file}.html`, html);
     });
 }
 
-for (let link of document.querySelectorAll(".download_html"))
+function downloadZip()
 {
-    link.click();
-    console.log("Clicked", link);
+    htmlComponents.generateAsync({type:"blob"})
+    .then(blob =>
+    {
+        let download = document.createElement('a');
+        download.classList.add("download_html");
+        download.download = "HtmlComponents.zip";
+        download.innerText = "Download Components";
+        download.hidden = true;
+        download.href = URL.createObjectURL(blob);
+
+        document.body.appendChild(download);
+
+        download.click();
+    });
 }
 
 function genHtmlFieldsFromObject(object)
@@ -62,7 +66,7 @@ function genHtmlFieldsFromObject(object)
         switch(valueType)
         {
             case "string":
-                outputHtml += `\t<label>${key}: </label><input type="text" id="${key}" value="${value}">\n`;
+                outputHtml += `\t<label>${key}: </label><input type="text" id="${key}" autocomplete="off" value="${value}">\n`;
                 break;
             case "object":
                 outputHtml += "\t<fieldset>\n";
