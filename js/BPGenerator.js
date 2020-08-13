@@ -20,26 +20,21 @@ function genObjectFromHtml(parent)
 
     for(const child of parent.children)
     {
-        // console.log(child.tagName);
         if(child.tagName.toLowerCase() == 'fieldset')
         {
             if(child.className == 'part')
             {
                 objects = [...objects, ...genObjectFromHtml(child)];
-                console.log(objects);
             }
             else
             {
                 obj[child.name] = genObjectFromHtml(child)[0];
             }
-            
-            // console.log(child);
         }
         
         if(child.tagName.toLowerCase() == 'input')
         {
             obj[child.name] = child.value;
-            // console.log(child.name, child.value);
         }
     }
 
@@ -47,8 +42,6 @@ function genObjectFromHtml(parent)
     {
         objects.push(obj);
     }
-
-    // console.log(objects, obj);
 
     return objects;
 }
@@ -59,8 +52,6 @@ btnAddPart.addEventListener('click', () =>
     
     const value = document.querySelector(`.addPart #typeList option[value="${partType.value}"]`).dataset.value;
     const file = `${value}.html`;
-
-    console.log(file);
 
     fetch(`SFS_HTML_Components/${file}`)
     .then(res  => res.text())
@@ -78,8 +69,6 @@ btnAddPart.addEventListener('click', () =>
             {
                 options += '\t\t<option value="' + type + '">\n';
             }
-
-            console.log(options);
 
             data = insertAtIndex(data, getPosition(data, "\n", 4)+1, options);
         }
@@ -100,11 +89,11 @@ btnUpdateOutput.addEventListener('click', () =>
     updateOutput();    
 });
 
+setInterval(updateOutput, 1000);
+
 function updateOutput()
 {
     const obj = genObjectFromHtml(partsElem);
-    console.log(partsElem);
-    console.log(obj);
     output.textContent = JSON.stringify(obj, null, 4);
 }
 
