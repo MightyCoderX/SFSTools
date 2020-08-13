@@ -3,6 +3,8 @@ const btnAddPart = document.getElementById('btnAddPart');
 const partsElem = document.getElementById('parts');
 const output = document.getElementById('output');
 const btnUpdateOutput = document.getElementById('updateOutput');
+const btnCopyOutput = document.getElementById('copyOutput');
+const btnSaveBlueprint = document.getElementById('saveBlueprint');
 
 const partTypes = {
     engine: ["Engine Hawk", "Engine Valiant", "Engine Kolibri", "Engine Titan", "Engine Frontier", "Ion Engine"],
@@ -12,11 +14,11 @@ const partTypes = {
     parachute: ["Parachute", "Parachute Side"]
 }
 
-function genObjectFromHtml(parent)
+function genBluePrintFromHtml(parent)
 {
-    let objects = [];
+    let bluePrint = {parts: []};
 
-    let obj = {};
+    let part = {};
 
     for(const child of parent.children)
     {
@@ -24,26 +26,26 @@ function genObjectFromHtml(parent)
         {
             if(child.className == 'part')
             {
-                objects = [...objects, ...genObjectFromHtml(child)];
+                bluePrint.parts = [...bluePrint.parts, ...genBluePrintFromHtml(child).parts];
             }
             else
             {
-                obj[child.name] = genObjectFromHtml(child)[0];
+                part[child.name] = genBluePrintFromHtml(child).parts[0];
             }
         }
         
         if(child.tagName.toLowerCase() == 'input')
         {
-            obj[child.name] = child.value;
+            part[child.name] = child.value;
         }
     }
 
-    if(Object.keys(obj).length)
+    if(Object.keys(part).length)
     {
-        objects.push(obj);
+        bluePrint.parts.push(part);
     }
 
-    return objects;
+    return bluePrint;
 }
 
 btnAddPart.addEventListener('click', () =>
@@ -89,11 +91,23 @@ btnUpdateOutput.addEventListener('click', () =>
     updateOutput();    
 });
 
+btnCopyOutput.addEventListener('click', () =>
+{
+    output.select();
+    output.setSelectionRange(0, output.textContent.length);
+    document.execCommand('copy');
+});
+
+btnSaveBlueprint.addEventListener('click', () =>
+{
+    saveAs('Blueprint.txt', output.textContent);
+});
+
 setInterval(updateOutput, 1000);
 
 function updateOutput()
 {
-    const obj = genObjectFromHtml(partsElem);
+    const obj = genBluePrintFromHtml(partsElem);
     output.textContent = JSON.stringify(obj, null, 4);
 }
 

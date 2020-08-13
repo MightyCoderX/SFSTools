@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/bp-generator.css">
 
+        <script src="js/FileUtils.js" defer></script>
         <script src="js/BPGenerator.js" defer></script>
     </head>
     <body>
@@ -41,13 +42,17 @@
                         <option data-value="strut"          value="Strut">
                         <option data-value="wheel"          value="Wheel">
                     </datalist>
-                    <button id="btnAddPart">Add Part</button>
+                    <button class="btn" id="btnAddPart">Add Part</button>
                 </div>
 
                 <div id="parts"></div>
             </div>
             <div class="output-box">
-                <button id="updateOutput">Update</button>
+                <div class="buttons">
+                    <button class="btn" id="updateOutput">Refresh</button>
+                    <button class="btn" id="copyOutput">Copy</button>
+                    <button class="btn" id="saveBlueprint">Save Blueprint</button>
+                </div>
                 <textarea id="output" readonly></textarea>
             </div>
         </section>
