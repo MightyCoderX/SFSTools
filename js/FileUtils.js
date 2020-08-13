@@ -7,7 +7,7 @@ function saveAs(fileName, content, contentType = 'text/plain')
     a.href = URL.createObjectURL(blob);
     a.download = fileName;
 
-    document.appendChild(a);
+    document.body.appendChild(a);
     a.click();
-    document.removeChild(a);
+    document.body.removeChild(a);
 }
