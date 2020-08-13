@@ -2,6 +2,7 @@ const partType = document.getElementById('partType');
 const btnAddPart = document.getElementById('btnAddPart');
 const partsElem = document.getElementById('parts');
 const output = document.getElementById('output');
+const btnUpdateOutput = document.getElementById('updateOutput');
 
 const partTypes = {
     engine: ["Engine Hawk", "Engine Valiant", "Engine Kolibri", "Engine Titan", "Engine Frontier", "Ion Engine"],
@@ -67,8 +68,8 @@ btnAddPart.addEventListener('click', () =>
     {
         if(partTypes[value])
         {
-            data = insertAtIndex(data, getPosition(data, "\n", 3)-1, ' list="variants" autocomplete="off"');
-            data = insertAtIndex(data, getPosition(data, "\n", 3)+1, '\t<datalist id="variants">\n');
+            data = insertAtIndex(data, getPosition(data, "\n", 3)-1, ` list="${value}-variants" autocomplete="off"`);
+            data = insertAtIndex(data, getPosition(data, "\n", 3)+1, `\t<datalist id="${value}-variants">\n`);
             data = insertAtIndex(data, getPosition(data, "\n", 4)+1, '\t</datalist>\n');
 
             let options = "";
@@ -90,12 +91,22 @@ btnAddPart.addEventListener('click', () =>
         partsElem.insertAdjacentHTML('beforeend', data);
         partType.value = "";
 
-        const obj = genObjectFromHtml(partsElem);
-        console.log(partsElem);
-        console.log(obj);
-        output.textContent = JSON.stringify(obj, null, 4);
+        updateOutput();
     });
 });
+
+btnUpdateOutput.addEventListener('click', () =>
+{
+    updateOutput();    
+});
+
+function updateOutput()
+{
+    const obj = genObjectFromHtml(partsElem);
+    console.log(partsElem);
+    console.log(obj);
+    output.textContent = JSON.stringify(obj, null, 4);
+}
 
 function insertAtIndex(str, index, sub)
 {

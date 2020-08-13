@@ -10,6 +10,7 @@
 
 ## Current
 - [x] Adding parts via the form
+- [ ] Removing parts
 - [x] Edit part values via forms  
 - [x] All parts? I think (Add an issue if not)
 
