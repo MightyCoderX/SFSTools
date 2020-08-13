@@ -26,20 +26,22 @@ function genHtmlFieldsFromObject(object)
         switch(valueType)
         {
             case "string":
-                outputHtml += `\t<label>${key}: </label><input type="text" id="${key}" value="${value}">\n`;
+                outputHtml += `\t<label>${key}: </label><input type="text" name="${key}" value="${value}">\n`;
                 break;
-            case "object":
-                outputHtml += "\t<fieldset>\n";
-                outputHtml += `\t\t<legend>${key}</legend>\n`;
-                outputHtml += genHtmlFieldsFromObject(object[key]).replace(/\t/g, "\t\t");
-                outputHtml += "\t</fieldset>\n";
-                break;
+                
             case "number":
-                outputHtml += `\t<label>${key}: </label><input type="number" id="${key}" value="${value}" step="0.1">\n`;
+                outputHtml += `\t<label>${key}: </label><input type="number" name="${key}" value="${value}" step="0.1">\n`;
                 break;
             
             case "boolean":
-                outputHtml += `\t<input type="checkbox" id="${key}" checked="${value}"><span>${key}</span>\n`;
+                outputHtml += `\t<input type="checkbox" name="${key}" checked="${value}"><span>${key}</span>\n`;
+                break;
+
+            case "object":
+                outputHtml += `\t<fieldset name="${key}">\n`;
+                outputHtml += `\t\t<legend>${key}</legend>\n`;
+                outputHtml += genHtmlFieldsFromObject(object[key]).replace(/\t/g, "\t\t");
+                outputHtml += "\t</fieldset>\n";
                 break;
         }
     }

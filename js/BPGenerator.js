@@ -19,23 +19,35 @@ function genObjectFromHtml(parent)
 
     for(const child of parent.children)
     {
-        console.log(child.tagName);
-        if(child.tagName.toLowerCase() == "fieldset")
+        // console.log(child.tagName);
+        if(child.tagName.toLowerCase() == 'fieldset')
         {
-            objects = [...genObjectFromHtml(child)];
-            console.log(child);
+            if(child.className == 'part')
+            {
+                objects = [...objects, ...genObjectFromHtml(child)];
+                console.log(objects);
+            }
+            else
+            {
+                obj[child.name] = genObjectFromHtml(child)[0];
+            }
+            
+            // console.log(child);
         }
         
-        if(child.tagName.toLowerCase() == "input")
+        if(child.tagName.toLowerCase() == 'input')
         {
-            obj[child.id] = child.value;
-            console.log(child.id, child.value);
+            obj[child.name] = child.value;
+            // console.log(child.name, child.value);
         }
     }
 
-    objects.push(obj);
+    if(Object.keys(obj).length)
+    {
+        objects.push(obj);
+    }
 
-    console.log(objects, obj);
+    // console.log(objects, obj);
 
     return objects;
 }
@@ -79,8 +91,9 @@ btnAddPart.addEventListener('click', () =>
         partType.value = "";
 
         const obj = genObjectFromHtml(partsElem);
+        console.log(partsElem);
         console.log(obj);
-        output.textContent = JSON.stringify(obj);
+        output.textContent = JSON.stringify(obj, null, 4);
     });
 });
 
