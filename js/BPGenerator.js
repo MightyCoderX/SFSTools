@@ -61,9 +61,9 @@ btnAddPart.addEventListener('click', () =>
     {
         if(partTypes[value])
         {
-            data = insertAtIndex(data, getPosition(data, "\n", 3)-1, ` list="${value}-variants" autocomplete="off"`);
-            data = insertAtIndex(data, getPosition(data, "\n", 3)+1, `\t<datalist id="${value}-variants">\n`);
-            data = insertAtIndex(data, getPosition(data, "\n", 4)+1, '\t</datalist>\n');
+            data = insertAtIndex(data, getPosition(data, "\n", 4)-1, ` list="${value}-variants" autocomplete="off"`);
+            data = insertAtIndex(data, getPosition(data, "\n", 4)+1, `\t<datalist id="${value}-variants">\n`);
+            data = insertAtIndex(data, getPosition(data, "\n", 5)+1, '\t</datalist>\n');
 
             let options = "";
 
@@ -72,11 +72,11 @@ btnAddPart.addEventListener('click', () =>
                 options += '\t\t<option value="' + type + '">\n';
             }
 
-            data = insertAtIndex(data, getPosition(data, "\n", 4)+1, options);
+            data = insertAtIndex(data, getPosition(data, "\n", 5)+1, options);
         }
         else
         {
-            data = insertAtIndex(data, getPosition(data, "\n", 3)-1, ' readonly');
+            data = insertAtIndex(data, getPosition(data, "\n", 4)-1, ' readonly');
         }
 
         partsElem.insertAdjacentHTML('beforeend', data);
