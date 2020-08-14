@@ -103,6 +103,7 @@ btnSaveBlueprint.addEventListener('click', () =>
     saveAs('Blueprint.txt', output.textContent);
 });
 
+
 setInterval(updateOutput, 1000);
 
 function updateOutput()

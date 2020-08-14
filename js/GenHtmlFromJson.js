@@ -7,7 +7,7 @@ for(let file of fs.readdirSync(path.resolve(__dirname, templates)))
 {
     let data = require(path.resolve(__dirname, templates, file));
     let name = (file[0].toUpperCase() + file.substring(1)).split("_").join(" ").replace(".json", "");
-    let html = `<fieldset class="part" name="${file.split('.')[0]}">\n\t<legend>${name}</legend>\n<span class="delete-part" id="deletePart"></span>\n${genHtmlFieldsFromObject(data)}\n</fieldset>`;
+    let html = `<fieldset class="part" name="${file.split('.')[0]}">\n\t<legend>${name}</legend>\n<span class="delete-part" id="deletePart" onclick="partsElem.removeChild(this.parentElement);"><i class="fas fa-trash"></i></span>\n${genHtmlFieldsFromObject(data)}\n</fieldset>`;
     //document.getElementById("parts").innerHTML += html;
 
     fs.writeFileSync(path.resolve(__dirname, "../SFS_HTML_Components/", file.replace('.json', '.html')), html);

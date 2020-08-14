@@ -82,6 +82,20 @@ input#partType
     padding: 0.8rem 1rem 1rem 1rem;
 }
 
+#parts .part
+{
+    position: relative;
+}
+
+#parts .part .delete-part
+{
+    position: absolute;
+    color: red;
+    top: 10px;
+    right: 0;
+    padding: 20px;
+}
+
 #parts input
 {
     display: block;
