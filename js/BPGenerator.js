@@ -1,5 +1,5 @@
 const partType = document.getElementById('partType');
-const btnAddPart = document.getElementById('btnAddPart');
+const btnClearParts = document.getElementById('clearParts');
 const partsElem = document.getElementById('parts');
 const output = document.getElementById('output');
 const btnUpdateOutput = document.getElementById('updateOutput');
@@ -48,7 +48,44 @@ function genBluePrintFromHtml(parent)
     return bluePrint;
 }
 
-btnAddPart.addEventListener('click', () =>
+partType.addEventListener('change', e =>
+{
+    addPart();
+    console.log('changed');
+});
+
+btnClearParts.addEventListener('click', () =>
+{
+    partsElem.innerHTML = '';
+});
+
+btnUpdateOutput.addEventListener('click', () =>
+{
+    updateOutput();    
+});
+
+btnCopyOutput.addEventListener('click', () =>
+{
+    output.select();
+    output.setSelectionRange(0, output.textContent.length);
+    document.execCommand('copy');
+});
+
+btnSaveBlueprint.addEventListener('click', () =>
+{
+    saveAs('Blueprint.txt', output.textContent);
+});
+
+
+setInterval(updateOutput, 1000);
+
+function updateOutput()
+{
+    const obj = genBluePrintFromHtml(partsElem);
+    output.textContent = JSON.stringify(obj, null, 4);
+}
+
+function addPart()
 {
     if(!partType.value.trim()) return;
     
@@ -84,32 +121,6 @@ btnAddPart.addEventListener('click', () =>
 
         updateOutput();
     });
-});
-
-btnUpdateOutput.addEventListener('click', () =>
-{
-    updateOutput();    
-});
-
-btnCopyOutput.addEventListener('click', () =>
-{
-    output.select();
-    output.setSelectionRange(0, output.textContent.length);
-    document.execCommand('copy');
-});
-
-btnSaveBlueprint.addEventListener('click', () =>
-{
-    saveAs('Blueprint.txt', output.textContent);
-});
-
-
-setInterval(updateOutput, 1000);
-
-function updateOutput()
-{
-    const obj = genBluePrintFromHtml(partsElem);
-    output.textContent = JSON.stringify(obj, null, 4);
 }
 
 function insertAtIndex(str, index, sub)

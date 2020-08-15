@@ -5,23 +5,27 @@
     justify-content: space-around;
     font-size: 16px;
     flex-wrap: wrap;
+    height: auto;
+    gap: 3rem;
 }
 
 .fields-box
 {
-    min-width: 40vw;
+    min-width: 50vmax;
 }
 
 .addPart
 {
     margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
-#addPart label
+.addPart label
 {
     display: block;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
 }
 
 input#partType
@@ -29,6 +33,25 @@ input#partType
     font-size: 16px;
     padding: 0.8rem;
     border: 1px solid gray;
+    width: calc(100% + 1px - 50px);
+    height: 40px;
+}
+
+#clearParts
+{
+    display: inline-block;
+    font-size: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    transition: color 0.2s;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+#clearParts:active
+{
+    color: red;
 }
 
 .btn
@@ -41,14 +64,6 @@ input#partType
     transition: 0.2s;
 }
 
-.btn#btnAddPart
-{
-    background: blue;
-    margin-left: 10px;
-    font-size: 16px;
-    padding: 0.8rem 1.5rem;
-}
-
 .btn:focus
 {
     border: 1px solid aqua;
@@ -59,14 +74,9 @@ input#partType
     background: blue;
 }
 
-.btn#btnAddPart:hover
-{
-    background: rgb(0, 81, 255);
-}
-
 .output-box
 {
-    min-width: 40vw;
+    min-width: 50vmax;
 }
 
 #parts
@@ -119,7 +129,7 @@ input#partType
 .output-box
 {
     min-height: 50vh;
-    min-width: 40vw;
+    min-width: 50vmax;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -128,9 +138,9 @@ input#partType
 
 .output-box textarea
 {
-    max-width: 40vw;
+    max-width: 100vw;
     max-height: 80vh;
-    width: 40vw;
-    height: 40vh;
+    width: 50vmax;
+    height: 60vmax;
     resize: none;
 }
