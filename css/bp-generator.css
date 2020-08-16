@@ -11,7 +11,7 @@
 
 .fields-box
 {
-    min-width: 50vmax;
+    min-width: 80vmin;
 }
 
 .addPart
@@ -74,11 +74,6 @@ input#partType
     background: blue;
 }
 
-.output-box
-{
-    min-width: 50vmax;
-}
-
 #parts
 {
     overflow-y: scroll;
@@ -128,19 +123,23 @@ input#partType
 
 .output-box
 {
-    min-height: 50vh;
-    min-width: 50vmax;
+    min-width: 80vmin;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
+.output-box .buttons
+{
+    margin-bottom: 2rem;
+}
+
 .output-box textarea
 {
     max-width: 100vw;
-    max-height: 80vh;
-    width: 50vmax;
+    max-height: 50vh;
+    width: 75vmin;
     height: 60vmax;
     resize: none;
 }
